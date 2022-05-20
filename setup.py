@@ -57,7 +57,7 @@ setup(
     extras_require={
         "mssql": ["mssql", "sqlparams", "sqlparse"],
         "postgres": ["psycopg2", "sqlparams", "sqlparse"],
-        "sqlite": ["sqlparams", "sqlparse"]
+        "sqlite": ["sqlparams", "sqlparse"],
     },
     package_data={"converter": ["data/mappings/*"], "": ["README.rst"]},
     install_requires=read_reqs(),

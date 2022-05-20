@@ -6,11 +6,9 @@ from logging.config import dictConfig as loggingDictConfig
 
 import click
 import yaml
-from PySide6.QtWidgets import QApplication
 
 from converter.config import Config
 from converter.controller import Controller
-from converter.ui.main_window import MainWindow
 
 
 class ColorFormatter(logging.Formatter):
@@ -186,6 +184,8 @@ def cli(ctx, config, verbose, no_color, option):
     )
 
     if ctx.invoked_subcommand is None:
+        from PySide6.QtWidgets import QApplication
+        from converter.ui.main_window import MainWindow
         app = QApplication(sys.argv)
 
         widget = MainWindow(
