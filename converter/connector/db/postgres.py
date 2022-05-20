@@ -1,7 +1,5 @@
 from typing import Dict
 
-import psycopg2
-import psycopg2.extras
 
 from .base import BaseDBConnector
 from .errors import DBConnectionError
@@ -15,6 +13,9 @@ class PostgresConnector(BaseDBConnector):
     name = "Postgres Connector"
     sql_params_output = "pyformat"
 
+    def __init__(self, config, **options):
+        super().__init__(config, **options)
+
     def _create_connection(self, database: Dict[str, str]):
         """
         Create database connection to the Postgres database
@@ -22,6 +23,8 @@ class PostgresConnector(BaseDBConnector):
 
         :return: Connection object
         """
+
+        import psycopg2
         try:
             conn = psycopg2.connect(**database)
         except Exception:
@@ -30,5 +33,6 @@ class PostgresConnector(BaseDBConnector):
         return conn
 
     def _get_cursor(self, conn):
+        import psycopg2.extras
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         return cur

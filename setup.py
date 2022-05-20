@@ -54,6 +54,11 @@ setup(
         "build_exe": BuildExeCommand,
     },
     packages=find_packages(exclude=("tests", "tests.*")),
+    extras_require={
+        "mssql": ["mssql", "sqlparams", "sqlparse"],
+        "postgres": ["psycopg2", "sqlparams", "sqlparse"],
+        "sqlite": ["sqlparams", "sqlparse"]
+    },
     package_data={"converter": ["data/mappings/*"], "": ["README.rst"]},
     install_requires=read_reqs(),
     entry_points="""

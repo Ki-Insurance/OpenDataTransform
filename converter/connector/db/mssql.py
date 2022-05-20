@@ -1,6 +1,5 @@
 from typing import Dict
 
-import pyodbc
 
 from .base import BaseDBConnector
 from .errors import DBConnectionError
@@ -23,6 +22,7 @@ class SQLServerConnector(BaseDBConnector):
         """
 
         try:
+            import pyodbc
             conn = pyodbc.connect(
                 "DRIVER={};SERVER={};PORT={};DATABASE={};UID={};PWD={}".format(
                     self.driver,

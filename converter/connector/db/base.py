@@ -1,7 +1,6 @@
 from typing import Any, Dict, Iterable, List
 
-import sqlparams
-import sqlparse
+
 
 from converter.connector.base import BaseConnector
 
@@ -123,10 +122,11 @@ class BaseDBConnector(BaseConnector):
         """
         with open(self.sql_statement_path) as f:
             sql = f.read()
-
+        import sqlparse
         return sqlparse.split(sql)
 
     def load(self, data: Iterable[Dict[str, Any]]):
+        import sqlparams
         insert_sql = self._get_insert_statements()
         data = list(
             data
